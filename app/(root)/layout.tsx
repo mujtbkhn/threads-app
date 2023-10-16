@@ -1,15 +1,17 @@
-import Topbar from "@/components/shared/Topbar";
 import "../globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import LeftSidebar from "@/components/shared/LeftSidebar";
 import RightSidebar from "@/components/shared/RightSidebar";
 import Bottombar from "@/components/shared/Bottombar";
+import Topbar from "@/components/shared/Topbar";
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Threads",
   description: "A Nextjs 13 Meta Threads Application",
 };
@@ -20,7 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="en">
         <body className={inter.className}>
           <Topbar />
@@ -33,6 +39,7 @@ export default function RootLayout({
             </section>
             <RightSidebar />
           </main>
+
           <Bottombar />
         </body>
       </html>

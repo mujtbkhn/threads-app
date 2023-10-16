@@ -1,11 +1,7 @@
-import ProfileHeader from "@/components/shared/ProfileHeader";
 import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import Image from "next/image";
 
-import { profileTabs } from "@/constants";
-import ThreadsTab from "@/components/shared/ThreadsTab";
 import UserCard from "@/components/cards/UserCard";
 
 async function Page() {
@@ -21,31 +17,31 @@ async function Page() {
 
   const result = await fetchUsers({
     userId: user.id,
-    searchString: '',
+    searchString: "",
     pageNumber: 1,
-    pageSize: 25
+    pageSize: 25,
   });
 
   return (
     <section>
       <h1 className="head-text mb-10">Search</h1>
 
-      <div className="mt-14 flex flex-col gap-9"> 
+      <div className="mt-14 flex flex-col gap-9">
         {result.users.length === 0 ? (
-            <p>No users Found</p>
+          <p>No users Found</p>
         ) : (
-            <>
+          <>
             {result.users.map((person) => (
-                <UserCard 
+              <UserCard
                 key={person.id}
                 id={person.id}
                 name={person.name}
                 username={person.username}
                 imgUrl={person.image}
-                personType='User'
-                />
+                personType="User"
+              />
             ))}
-            </>
+          </>
         )}
       </div>
     </section>

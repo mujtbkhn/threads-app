@@ -64,7 +64,7 @@ export const POST = async (request: Request) => {
   // Listen organization creation event
   if (eventType === "organization.created") {
     // Resource: https://clerk.com/docs/reference/backend-api/tag/Organizations#operation/CreateOrganization
-    // Show what event?.data sends from above resource
+    // Show what evnt?.data sends from above resource
     const { id, name, slug, logo_url, image_url, created_by } =
       evnt?.data ?? {};
 
@@ -93,24 +93,24 @@ export const POST = async (request: Request) => {
   // Listen organization invitation creation event.
   // Just to show. You can avoid this or tell people that we can create a new mongoose action and
   // add pending invites in the database.
-  if (eventType === "organizationInvitation.created") {
-    try {
-      // Resource: https://clerk.com/docs/reference/backend-api/tag/Organization-Invitations#operation/CreateOrganizationInvitation
-      console.log("Invitation created", evnt?.data);
+  // if (eventType === "organizationInvitation.created") {
+  //   try {
+  //     // Resource: https://clerk.com/docs/reference/backend-api/tag/Organization-Invitations#operation/CreateOrganizationInvitation
+  //     console.log("Invitation created", evnt?.data);
 
-      return NextResponse.json(
-        { message: "Invitation created" },
-        { status: 201 }
-      );
-    } catch (err) {
-      console.log(err);
+  //     return NextResponse.json(
+  //       { message: "Invitation created" },
+  //       { status: 201 }
+  //     );
+  //   } catch (err) {
+  //     console.log(err);
 
-      return NextResponse.json(
-        { message: "Internal Server Error" },
-        { status: 500 }
-      );
-    }
-  }
+  //     return NextResponse.json(
+  //       { message: "Internal Server Error" },
+  //       { status: 500 }
+  //     );
+  //   }
+  // }
 
   // Listen organization membership (member invite & accepted) creation
   if (eventType === "organizationMembership.created") {

@@ -1,12 +1,8 @@
-import ProfileHeader from "@/components/shared/ProfileHeader";
-import { fetchUser, fetchUsers, getActivity } from "@/lib/actions/user.actions";
+import { fetchUser, getActivity } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 
-import { profileTabs } from "@/constants";
-import ThreadsTab from "@/components/shared/ThreadsTab";
-import UserCard from "@/components/cards/UserCard";
 import Link from "next/link";
 
 async function Page() {
@@ -22,7 +18,7 @@ async function Page() {
   const activity = await getActivity(userInfo._id);
 
   return (
-    <section>
+    <>
       <h1 className="head-text mb-10">Activity</h1>
       <section className="mt-10 flex flex-col gap-5">
         {activity.length > 0 ? (
@@ -39,7 +35,7 @@ async function Page() {
                   />
                   <p className="!text-small-regular text-light-1">
                     <span className="mr-1 text-primary-500">
-                       {activity.author.name}
+                      {activity.author.name}
                     </span>{" "}
                     replied to your thread
                   </p>
@@ -51,7 +47,7 @@ async function Page() {
           <p className="!text-base-regular text-light-3">No Activity Yet</p>
         )}
       </section>
-    </section>
+    </>
   );
 }
 export default Page;
